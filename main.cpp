@@ -27,6 +27,7 @@ int main(){
     const double deltaT = 100/(double)FPS; //the 100 is to speed up time.
 
     int spawnMode = 0; //0 means spawn test charges, 1 means spawn source charges
+    double placeMultiplier = 1;
 
     while(!WindowShouldClose()){
 
@@ -35,15 +36,15 @@ int main(){
         //INPUT - Spawn charges on click
         if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
             if(spawnMode == 0){
-                Test.push_back(MovingCharge(10, GetMouseX(), GetMouseY(), 1));
+                Test.push_back(MovingCharge(10 * placeMultiplier, GetMouseX(), GetMouseY(), 1));
             } else if(spawnMode == 1){
-                Source.push_back(new PatternSource(10, GetMouseX(), GetMouseY()));
+                Source.push_back(new PatternSource(10 * placeMultiplier, GetMouseX(), GetMouseY()));
             }
         }
 
         //Spawn array of electric charges
         if(IsKeyPressed(KEY_E)){
-            SpawnElectricField(20, 20);
+            SpawnElectricField(20, 20, placeMultiplier);
         }
 
         //Switch spawn mode
@@ -53,7 +54,15 @@ int main(){
         }
         if (IsKeyPressed(KEY_KP_1))
         {
-            spawnMode = 1; std::cout << "hey";
+            spawnMode = 1;
+        }
+        if (IsKeyPressed(KEY_P))
+        {
+            placeMultiplier = 1;
+        }
+        if (IsKeyPressed(KEY_O))
+        {
+            placeMultiplier = -1;
         }
         
 

@@ -33,7 +33,8 @@ class MovingCharge{
         double charge;          //The particles' charge
         double x;               //x-position and y-position
         double y;
-        Color colour = BLUE;     //the particle's colour when rendered
+        Color positive = BLUE;     //the particle's colour when rendered
+        Color negative = BLACK;     //the particle's colour when rendered
 
         MovingCharge(double charge_, double x_, double y_, double mass_){       //Constructor
             charge = charge_;
@@ -43,7 +44,11 @@ class MovingCharge{
         }
 
         void render(){                                                          //Render Function, should be overrided in child classes
-            DrawCircle(x, y, radius, colour);
+            if(charge > 0){
+                DrawCircle(x, y, radius, positive);
+            } else{
+                DrawCircle(x, y, radius, negative);
+            }
         }
 
         void update(double delta_t, double field, double angle){
@@ -124,12 +129,12 @@ class PatternSource: public SourceCharge{               //Source Charge, but Pos
         }
 };
 
-void SpawnElectricField(int x_density, int y_density){  //Spawns array of Test Charges
+void SpawnElectricField(int x_density, int y_density, double charge){  //Spawns array of Test Charges
     for (int i = 0; i < x_density; i++)
     {
         for (int j = 0; j < y_density; j++)
         {
-            Test.push_back(MovingCharge(1, screenWidth*i/x_density, screenWidth*j/y_density, 1));
+            Test.push_back(MovingCharge(charge, screenWidth*i/x_density, screenWidth*j/y_density, 1));
         }
         
     }
