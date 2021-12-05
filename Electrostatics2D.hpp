@@ -11,6 +11,7 @@
 #include <vector>
 
 #define FPS 120 //Defaults to 120 FPS for accuracy
+#define THRESHOLD 0.01
 
 #ifndef ELECTROSTATICS2D_HPP
 #define ELECTROSTATICS2D_HPP
@@ -65,6 +66,11 @@ class MovingCharge{
 
             velocity_x += charge*fieldX*delta_t /mass;
             velocity_y += charge*fieldY*delta_t /mass;
+        }
+
+        void stop(){
+            velocity_x = 0;
+            velocity_y = 0;
         }
 };
 

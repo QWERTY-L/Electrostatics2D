@@ -11,3 +11,7 @@ A raylib program for simulating electric fields
 **NumPad1**     => Switch to Spawning Source Charges
 
 **E**           => Spawn a 20x20 Array of Charges
+
+**P**           => Switch to Postive Charge Placement Mode
+
+**O**           => Switch to Negative Charge Placement Mode
